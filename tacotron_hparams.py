@@ -5,12 +5,13 @@ import tensorflow as tf
 hparams = tf.contrib.training.HParams(
 	# Comma-separated list of cleaners to run on text prior to training and eval. For non-English
 	# text, you may want to use "basic_cleaners" or "transliteration_cleaners".
-    dataset = 'D8',
+    dataset = 'BQ',
     feat_out_dir = 'training_data',
     tacotron_input = 'D8_train.txt',
 
-    tacotron_fine_tuning = True, 
-    pretrained_model_checkpoint_path = 'logs-Tacotron-2/taco_pretrained/tacotron_model.ckpt-206500',
+    tacotron_fine_tuning = True,
+    # pretrained_model_checkpoint_path = 'logs-Tacotron-2/taco_pretrained/tacotron_model.ckpt-206500',
+	pretrained_model_checkpoint_path = 'logs-Tacotron-2/BQ/taco_pretrained/tacotron_model.ckpt-3000',
     pretrained_tacotron_input = 'biaobei_train.txt',
 	
     tacotron_initial_learning_rate = 1e-3, #starting learning rate

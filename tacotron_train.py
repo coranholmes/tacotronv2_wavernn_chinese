@@ -29,7 +29,7 @@ def main():
         help='Steps between running summary ops')
     parser.add_argument('--checkpoint_interval', type=int, default=100,
         help='Steps between writing checkpoints')
-    parser.add_argument('--tacotron_train_steps', type=int, default=3000, help='total number of tacotron training steps')
+    parser.add_argument('--tacotron_train_steps', type=int, default=3000, help='total number of tacotron training steps')  # TODO 这里设置的default为总的训练steps
     parser.add_argument('--tf_log_level', type=int, default=1, help='Tensorflow C++ log level.')
     parser.add_argument('--model', default='Tacotron-2')
 

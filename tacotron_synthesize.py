@@ -136,11 +136,13 @@ if __name__ == '__main__':
     synth = Synthesizer()
 
     ckpt_path = f'logs-Tacotron-2/{hparams.dataset}/taco_pretrained' # finetune(D8)
-    #ckpt_path = 'logs-Tacotron-2/taco_pretrained' # pretrained_tacotron
+    # ckpt_path = 'logs-Tacotron-2/taco_pretrained' # pretrained_tacotron_input
     checkpoint_path = tf.train.get_checkpoint_state(ckpt_path).model_checkpoint_path
+    # checkpoint_path = 'logs-Tacotron-2/BQ/taco_pretrained/tacotron_model.ckpt-5000'  # TODO: 直接指定checkpoint path
 
     synth.load(checkpoint_path, hparams)
     print('succeed in loading checkpoint')
+    
     
     out_dir = os.path.join(cwd, 'tacotron_inference_output')
     #if os.path.exists(out_dir):

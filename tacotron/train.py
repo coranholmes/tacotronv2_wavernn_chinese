@@ -132,7 +132,8 @@ def train(log_dir, args, hparams):
             #saved model restoring
             try:
                 saver.restore(sess, hparams.pretrained_model_checkpoint_path)
-                initial_global_step = global_step.assign(0)
+                # initial_global_step = global_step.assign(0)  # TODO 从头开始训练
+                initial_global_step = global_step # TODO 接着训练
                 sess.run(initial_global_step)
 
             except tf.errors.OutOfRangeError as e:
