@@ -34,7 +34,7 @@ def gen_testset(model: WaveRNN, test_set, samples, batched, target, overlap, sav
         else:
             x = label_2_float(x, bits)
 
-        save_wav(x, save_path/f'{k}k_steps_{i}_target.wav')
+        # save_wav(x, save_path/f'{k}k_steps_{i}_target.wav')
 
         batch_str = f'gen_batched_target{target}_overlap{overlap}' if batched else 'gen_NOT_BATCHED'
         save_str = str(save_path/f'{k}k_steps_{i}_{batch_str}.wav')
@@ -107,6 +107,7 @@ def get_vocoder_datasets(feature_path, batch_size, train_gta=None):
 def collate_vocoder(batch):
     mel_win = hp.voc_seq_len // hp.hop_length + 2 * hp.voc_pad
     max_offsets = [x[0].shape[-1] -2 - (mel_win + 2 * hp.voc_pad) for x in batch]
+    # print(max_offsets)
     mel_offsets = [np.random.randint(0, offset) for offset in max_offsets]
     sig_offsets = [(offset + hp.voc_pad) * hp.hop_length for offset in mel_offsets]
 

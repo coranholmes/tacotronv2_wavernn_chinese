@@ -81,16 +81,15 @@ if __name__ == "__main__":
     overlap = args.overlap
     file = args.file
     gta = args.gta
-    gta = False 
-    
-    '''
+    gta = False
+
     if not args.force_cpu and torch.cuda.is_available():
         device = torch.device('cuda')
+        torch.cuda.set_device(1)
     else:
         device = torch.device('cpu')
-    '''
 
-    device = torch.device('cpu')
+    # device = torch.device('cpu')
 
     print('Using device:', device)
 

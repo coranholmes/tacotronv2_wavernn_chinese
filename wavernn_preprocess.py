@@ -99,6 +99,8 @@ class Synthesizer:
         mels, alignments = self.session.run([self.mel_outputs, self.alignments], feed_dict=feed_dict)
         
         mel = mels[0]
+        alignment = alignments[0]
+
         print('pred_mel.shape', mel.shape)
         mel = np.clip(mel, T2_output_range[0], T2_output_range[1])
         mel = mel[:target_length, :]
@@ -110,7 +112,6 @@ class Synthesizer:
         np.save(pred_mel_path, mel, allow_pickle=False)
         plot.plot_spectrogram(mel, pred_mel_path.replace('.npy', '.png'), title='')
 
-        alignment = alignments[0]
         alignment_path = os.path.join(out_dir, hparams.dataset, 'align-{}.png'.format(idx))
         plot.plot_alignment(alignment, alignment_path, title='')
         #alignment_path = os.path.join(out_dir, 'align-{}.npy'.format(idx))
