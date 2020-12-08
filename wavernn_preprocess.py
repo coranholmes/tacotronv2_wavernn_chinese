@@ -106,12 +106,12 @@ class Synthesizer:
         mel = np.clip(mel, 0.0, 1.0) # 0~1.0
         print(target_length, new_target_length)
 
-        pred_mel_path = os.path.join(out_dir, 'mel-{}-pred.npy'.format(idx))
+        pred_mel_path = os.path.join(out_dir, hparams.dataset, 'mel-{}-pred.npy'.format(idx))
         np.save(pred_mel_path, mel, allow_pickle=False)
         plot.plot_spectrogram(mel, pred_mel_path.replace('.npy', '.png'), title='')
 
         alignment = alignments[0]
-        alignment_path = os.path.join(out_dir, 'align-{}.png'.format(idx))
+        alignment_path = os.path.join(out_dir, hparams.dataset, 'align-{}.png'.format(idx))
         plot.plot_alignment(alignment, alignment_path, title='')
         #alignment_path = os.path.join(out_dir, 'align-{}.npy'.format(idx))
         #np.save(alignment_path, alignment, allow_pickle=False) 
@@ -132,15 +132,15 @@ if __name__ == '__main__':
     print('succeed in loading checkpoint')
     
     out_dir = os.path.join(cwd, 'predicted_mel')
-    if os.path.exists(out_dir):
-        shutil.rmtree(out_dir)
-    os.makedirs(out_dir)
+    # if os.path.exists(out_dir):
+    #     shutil.rmtree(out_dir)
+    # os.makedirs(out_dir)
     
-    base_path = '/home/spurs/tts/dataset/bznsyp/training_data_v1'
+    base_path = './'
 
     cnt = 10
     res = open(os.path.join(cwd, 'wavernn_training_data.txt'), 'w', encoding='utf-8')
-    with open(os.path.join(base_path, 'train.txt'), 'r', encoding='utf-8') as f:
+    with open(os.path.join(base_path, hparams.tacotron_input), 'r', encoding='utf-8') as f:
         for line in f:
             #audio_filename, mel_filename, time_steps, mel_frames, text, pyin
             line = line.strip().split('|')

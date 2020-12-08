@@ -2,16 +2,17 @@ import numpy as np
 import tensorflow as tf
 
 # Default hyperparameters
+ds_name = 'D8'  # TODO: 根据dataset更改
 hparams = tf.contrib.training.HParams(
 	# Comma-separated list of cleaners to run on text prior to training and eval. For non-English
 	# text, you may want to use "basic_cleaners" or "transliteration_cleaners".
-    dataset = 'BQ',
+    dataset = ds_name,
     feat_out_dir = 'training_data',
-    tacotron_input = 'D8_train.txt',
+    tacotron_input = ds_name + '_train.txt',
 
     tacotron_fine_tuning = True,
     # pretrained_model_checkpoint_path = 'logs-Tacotron-2/taco_pretrained/tacotron_model.ckpt-206500',
-	pretrained_model_checkpoint_path = 'logs-Tacotron-2/BQ/taco_pretrained/tacotron_model.ckpt-3000',
+	pretrained_model_checkpoint_path = 'logs-Tacotron-2/' + ds_name + '/taco_pretrained/tacotron_model.ckpt-3000',
     pretrained_tacotron_input = 'biaobei_train.txt',
 	
     tacotron_initial_learning_rate = 1e-3, #starting learning rate
