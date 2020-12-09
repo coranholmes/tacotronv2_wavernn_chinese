@@ -28,7 +28,7 @@ def main():
 
     hp.configure(args.hp_file)  # load hparams from file
 
-    paths = Paths(hp.voc_model_id)
+    paths = Paths(hp.dataset)
 
     batch_size = hp.voc_batch_size
     train_gta = args.gta
@@ -118,7 +118,6 @@ def voc_train_loop(paths: Paths, model: WaveRNN, loss_func, optimizer, train_set
                 y = y.float()
 
             y = y.unsqueeze(-1)
-
 
             loss = loss_func(y_hat, y)
 

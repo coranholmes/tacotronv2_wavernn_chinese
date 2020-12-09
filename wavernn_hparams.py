@@ -22,7 +22,7 @@ fft_bins = n_fft // 2 + 1
 num_mels = 80
 hop_length = 275                 # 12.5ms - in line with Tacotron 2 paper
 win_length = 1100                   # 50ms - same reason as above
-fmin = 95
+fmin = 55   #Set this to 55 if your speaker is male! if female, 95 should help taking off noise. (To test depending on dataset. Pitch info: male~[65, 260], female~[100, 525])
 min_level_db = -100
 ref_level_db = 20
 bits = 10                            # bit depth of signal
@@ -46,14 +46,14 @@ voc_batch_size = 32
 voc_lr = 1e-4
 voc_checkpoint_every = 1000
 voc_gen_at_checkpoint = 1           # number of samples to generate at each checkpoint
-voc_total_steps = 630_000         # Total number of training steps
+voc_total_steps = 650_000         # Total number of training steps, 预训练模型617_000 steps
 voc_test_samples = 50               # How many unseen samples to put aside for testing
 voc_pad = 2                         # this will pad the input so that the resnet can 'see' wider than input length
 voc_seq_len = hop_length * 5        # must be a multiple of hop_length
 voc_clip_grad_norm = 4              # set to None if no gradient clipping needed
 
 # Generating / Synthesizing
-voc_gen_batched = False             # very fast (realtime+) single utterance batched generation
+voc_gen_batched = True             # very fast (realtime+) single utterance batched generation
 voc_target = 11_000                 # target number of samples to be generated in each batch entry
 voc_overlap = 550                   # number of samples for crossfading between batches
 

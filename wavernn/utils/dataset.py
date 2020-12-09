@@ -108,7 +108,9 @@ def collate_vocoder(batch):
     mel_win = hp.voc_seq_len // hp.hop_length + 2 * hp.voc_pad
     max_offsets = [x[0].shape[-1] -2 - (mel_win + 2 * hp.voc_pad) for x in batch]
     # print(max_offsets)
-    mel_offsets = [np.random.randint(0, offset) for offset in max_offsets]
+
+    mel_offsets = [np.random.randint(0, offset) if offset > 0 else 0 for offset in max_offsets]
+
     sig_offsets = [(offset + hp.voc_pad) * hp.hop_length for offset in mel_offsets]
 
     mels = [x[0][:, mel_offsets[i]:mel_offsets[i] + mel_win] for i, x in enumerate(batch)]

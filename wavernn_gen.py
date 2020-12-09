@@ -74,14 +74,14 @@ if __name__ == "__main__":
         args.samples = hp.voc_gen_at_checkpoint
 
     batched = args.batched 
-    batched = True
+    # batched = True
 
     samples = args.samples
     target = args.target
     overlap = args.overlap
     file = args.file
     gta = args.gta
-    gta = False
+    # gta = False
 
     if not args.force_cpu and torch.cuda.is_available():
         device = torch.device('cuda')

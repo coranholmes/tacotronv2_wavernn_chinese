@@ -172,7 +172,7 @@ def gen_from_file(model: WaveRNN, load_path, save_path, batched, target, overlap
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate Tacktron+WaveRNN Samples From Text')
     parser.add_argument('--text', default='', help='text to synthesis.')
-    parser.add_argument('--batched', '-b', dest='batched', action='store_false', help='Fast Batched Generation')
+    parser.add_argument('--batched', '-b', dest='batched', action='store_true', help='Fast Batched Generation')
     parser.add_argument('--unbatched', '-u', dest='batched', action='store_false', help='Slow Unbatched Generation')
     parser.add_argument('--samples', '-s', type=int, help='[int] number of utterances to generate')
     parser.add_argument('--target', '-t', type=int, help='[int] number of samples in each batch index')
@@ -237,14 +237,14 @@ if __name__ == '__main__':
         args.samples = hp.voc_gen_at_checkpoint
 
     batched = args.batched
-    batched = True
+    # batched = True
 
     samples = args.samples
     target = args.target
     overlap = args.overlap
     file = pred_mel_path
     gta = args.gta
-    gta = False
+    # gta = False
 
     if not args.force_cpu and torch.cuda.is_available():
         device = torch.device('cuda')
