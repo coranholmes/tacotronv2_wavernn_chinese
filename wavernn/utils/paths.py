@@ -8,11 +8,11 @@ class Paths:
         self.base = Path(__file__).parent.parent.parent.expanduser().resolve()
 
         # WaveRNN/Vocoder Paths
-        self.voc_checkpoints = self.base/'logs_wavernn/checkpoints'
+        self.voc_checkpoints = self.base/'logs_wavernn'/voc_id/'checkpoints'
         self.voc_latest_weights = self.voc_checkpoints/'latest_weights.pyt'
         self.voc_latest_optim = self.voc_checkpoints/'latest_optim.pyt'
 
-        self.voc_output = self.base/'logs_wavernn/model_outputs'
+        self.voc_output = self.base/'logs_wavernn'/voc_id/'model_outputs'
         self.voc_step = self.voc_checkpoints/'step.npy'
         self.voc_log = self.voc_checkpoints/'log.txt'
 

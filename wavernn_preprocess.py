@@ -140,7 +140,7 @@ if __name__ == '__main__':
     base_path = './'
 
     cnt = 10
-    res = open(os.path.join(cwd, 'wavernn_training_data.txt'), 'w', encoding='utf-8')
+    res = open(os.path.join(cwd, 'logs_wavernn', hparams.dataset, 'wavernn_training_data.txt'), 'w', encoding='utf-8')
     with open(os.path.join(base_path, hparams.tacotron_input), 'r', encoding='utf-8') as f:
         for line in f:
             #audio_filename, mel_filename, time_steps, mel_frames, text, pyin
